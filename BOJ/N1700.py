@@ -1,6 +1,6 @@
-N, K = map(int, input().split())
+N, K = map(int, input().split()) #멀티탭 스케줄링
 parent = list(map(int, input().split()))
-tab = []
+tab = []ㅎ
 for i in range(N):
     if parent[i] not in tab:
         tab.append(parent[i])
