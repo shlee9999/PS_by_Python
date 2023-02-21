@@ -1,35 +1,23 @@
+# Gold 10**12+1~
+# Silver 10**6+1~
+# Bronze 1~
 class Country:
-    r = 0
-
-    def __init__(self, num, gold, silver, bronze):
+    def __init__(self, num, score):
         self.num = num
-        self.gold = gold
-        self.silver = silver
-        self.bronze = bronze
-
-    def rank(self, num):
-        self.r = num
+        self.score = score
 
 
 N, K = map(int, input().split())
-countries = [Country(0, 0, 0, 0)]
+countries = []
 
-for i in range(1, N + 1):
+index = -1
+for i in range(N):
     li = list(map(int, input().split()))
-    countries.append(Country(li[0], li[1], li[2], li[3]))
-sorted(countries, key=lambda x: (-x.gold, -x.silver, -x.bronze))
-
+    countries.append(Country(li[0], li[1] * 10 ** 12 + li[2] * 10 ** 6 + li[3]))
+    if li[0] == K:
+        index = i
 cnt = 0
-i = 1
-while (i <= N):
-    cnt += 1
-    if i < N and countries[i].gold == countries[i + 1].gold and countries[i].silver == countries[i + 1].silver and \
-            countries[i].bronze == countries[i + 1].bronze:
-        countries[i].rank(cnt)
-        countries[i + 1].rank(cnt)
-        i += 1
-
-    else:
-        countries[i].rank(cnt)
-    i += 1
-print(countries[K].r)
+for i in range(N):
+    if countries[i].score > countries[index].score:
+        cnt += 1
+print(cnt + 1)
