@@ -1,23 +1,25 @@
 n, m = map(int, input().split())
 li = list(map(int, input().split()))
 li.sort()
-new_li = []
-for i in range(n):
-    if li[i] not in new_li:
-        new_li.append(li[i])
 
 s = []
 
+visited = [False] * n
 
 def dfs():
     if len(s) == m:
         print(' '.join(map(str, s)))
         return
-    for i in range(len(new_li)):
-        if len(s) == 0 or len(s) > 0 and s.count(new_li[i]) < li.count(new_li[i]):
-            s.append(new_li[i])
+    prev = 0
+    for i in range(n):
+        if not visited[i] and prev != li[i]: # prev를 이용해 다음에 올 숫자가 이미 확인했던 값이면 패스한다
+            prev = li[i]
+            s.append(li[i])
+            visited[i] = True
             dfs()
             s.pop()
+            visited[i] = False
+
 
 
 dfs()
