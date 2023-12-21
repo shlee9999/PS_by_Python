@@ -20,5 +20,8 @@ for num in range(1000001):
     else:
         if len(num) + abs(int(num) - n) < len(str(res)) + abs(res - n):
             res = int(num)
+        elif len(num) + abs(int(num) - n) > len(str(res)) + abs(res - n):
+            break
+
 
 print(min(len(str(res)) + abs(res - n), abs(100 - n)))
