@@ -1,12 +1,11 @@
 N = int(input())
-if N == 1:
-    print("1")
-else:
-    cnt = 1
-    while cnt <= 30:
-        if 2 ** cnt == N:
-            print("1")
-            break
+b = 1
+cnt = 0
+while b < 1 << 31:
+    if N & b:
         cnt += 1
-    else:
-        print("0")
+    b <<= 1
+if cnt == 1:
+    print(1)
+else:
+    print(0)
