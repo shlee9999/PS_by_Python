@@ -4,18 +4,18 @@ input = sys.stdin.readline
 N = int(input())
 for _ in range(N):
     s = input().rstrip()
-    if s.count('(') != s.count(')'):
-        print("NO")
-        continue
-    li = []
+    stack = []
     for c in s:
         if c == '(':
-            li.append(c)
-        else:  # c == ')'
-            if '(' in li:
-                li.remove('(')
-            else:  # 실패
+            stack.append(c)
+        elif c == ')':
+            if stack:
+                stack.pop()
+            else:
                 print("NO")
                 break
-    else:  # 성공
-        print("YES")
+    else:
+        if stack:
+            print("NO")
+        else:
+            print("YES")
