@@ -14,7 +14,7 @@ s = 0
 e = 0
 h = 0
 for date in range(1, 367):
-    if len(appoint_list[date]) == 0 or date == 366:  # 일정이 없는 날 -> 넓이 계산
+    if len(appoint_list[date]) == 0:  # 일정이 없는 날 -> 넓이 계산
         w = e - s + 1
         area = w * h
         res += area
